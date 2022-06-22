@@ -121,6 +121,15 @@ function unclickableOption() {
   }
 }
 
+function next() {
+  if (questCount === quiz.length) {
+    console.log("end");
+  } else {
+    getNewQuestion();
+  }
+}
+
+
 window.onload = function() {
   setAvaliableQuestions();
   getNewQuestion();
