@@ -64,13 +64,19 @@ const setAvaliableQuestions = () => {
   }
 };
 
+const minus = (index, available, init) => {
+  init = available.indexOf(index);
+  available.splice(init, 1);
+};
+
+
 const getNewQuestion = () => {
   questNum.innerHTML = 'Питання ' + (questCount + 1) + ' з ' + quiz.length;
 
   const questIndx = availQuests[Math.floor(Math.random() * availQuests.length)];
 
-  const numOfQstInd = availQuests.indexOf(questIndx);
-  availQuests.splice(numOfQstInd, 1);
+  const numOfQstInd = 0;
+  minus(questIndx, availQuests, numOfQstInd);
 
   currQuest = questIndx;
 
@@ -83,8 +89,8 @@ const getNewQuestion = () => {
 
 
     const optIndx = availOpts[Math.floor(Math.random() * availOpts.length)];
-    const numOfOptInd = availOpts.indexOf(optIndx);
-    availOpts.splice(numOfOptInd, 1);
+    const numOfOptInd = 0;
+    minus(optIndx, availOpts, numOfOptInd);
 
     const option = document.createElement('div');
     option.innerHTML = currQuest.options[optIndx];
