@@ -90,6 +90,76 @@ body{
     margin: 0;
 }
 
+.quiz .option-container .option{
+    background-color: #cccccc;
+    padding: 15px;
+    font-size: 16px;
+    line-height: 22px;
+    color: #000000;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    text-transform: capitalize;
+    opacity: 0;
+    animation: fadeIn 0.3s ease forwards;
+    position: relative;
+    overflow:hidden;
+}
+
+@keyframes fadeIn{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+.quiz .option-container .option.correct::before{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: green;
+    z-index: -1;
+    animation: slideInLeft .5s ease forwards;
+}
+
+@keyframes slideInLeft{
+    0%{
+        transform: translateY(-100%);
+    }
+    100%{
+        transform: translateY(0%);
+    }
+}
+
+.quiz .option-container .option.correct{
+    color: black;
+}
+
+.quiz .option-container .option.wrong::before{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    animation: slideInLeft .5s ease forwards;
+    background-color: red;
+}
+
+.quiz .option-container .option.wrong{
+    color: black;
+}
+
+.quiz .option-container .option.already-answered{
+    pointer-events: none;
+}
+
 .quiz .btn {
     margin: 15px 0;
 }

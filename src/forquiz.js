@@ -54,6 +54,7 @@ const availQuests = [];
 const availOpts = [];
 
 let questCount = 0;
+let corrAnsw = 0;
 let currQuest = 0;
 
 
@@ -97,9 +98,28 @@ const getNewQuestion = () => {
     option.id = optIndx;
     option.className = 'option';
     optionData.appendChild(option);
+    option.setAttribute('onclick', 'getResult(this)');
   }
   questCount++;
 };
+
+function getResult(element) {
+  const id = parseInt(element.id);
+  if (id === currQuest.answer) {
+    element.classList.add('correct');
+    corrAnsw++;
+  } else {
+    element.classList.add('wrong');
+  }
+  unclickableOption();
+}
+
+function unclickableOption() {
+  const optionLen = optionData.children.length;
+  for (let i = 0; i < optionLen; i++) {
+    optionData.children[i].classList.add('already-answered');
+  }
+}
 
 window.onload = function() {
   setAvaliableQuestions();
