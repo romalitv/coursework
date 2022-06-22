@@ -27,6 +27,13 @@ body{
     margin-right: auto;
 }
 
+.custom-box::before,
+.custom-box::after{
+    content: '';
+    clear: both;
+    display: table;
+}
+
 .home h2{
     text-align:center;
     font-size: 18px;

@@ -58,8 +58,8 @@ const availOpts = [];
 
 let questCount = 0;
 let corrAnsw = 0;
+let attempt = 0;
 let currQuest = 0;
-
 
 const setAvaliableQuestions = () => {
   const totalQuestions = quiz.length;
@@ -73,12 +73,10 @@ const minus = (index, available, init) => {
   available.splice(init, 1);
 };
 
-
 const getNewQuestion = () => {
   questNum.innerHTML = 'Питання ' + (questCount + 1) + ' з ' + quiz.length;
 
   const questIndx = availQuests[Math.floor(Math.random() * availQuests.length)];
-
   const numOfQstInd = 0;
   minus(questIndx, availQuests, numOfQstInd);
 
@@ -90,7 +88,6 @@ const getNewQuestion = () => {
   const optionLen = currQuest.options.length;
   for (let i = 0; i < optionLen; i++) {
     availOpts.push(i);
-
 
     const optIndx = availOpts[Math.floor(Math.random() * availOpts.length)];
     const numOfOptInd = 0;
@@ -106,14 +103,23 @@ const getNewQuestion = () => {
   questCount++;
 };
 
+// eslint-disable-next-line no-unused-vars
 function getResult(element) {
   const id = parseInt(element.id);
   if (id === currQuest.answer) {
     element.classList.add('correct');
     corrAnsw++;
+
   } else {
     element.classList.add('wrong');
+    const leng = optionData.children.length;
+    for (let i = 0; i < leng; i++) {
+      if (parseInt(optionData.children[i].id) === currQuest.answer) {
+        optionData.children[i].classList.add('correct');
+      }
+    }
   }
+  attempt++;
   unclickableOption();
 }
 
@@ -127,8 +133,10 @@ function unclickableOption() {
 const quizOver = () => {
   quizCont.classList.add('hide');
   resCont.classList.remove('hide');
+  quizResult();
 };
 
+// eslint-disable-next-line no-unused-vars
 function next() {
   if (questCount === quiz.length) {
     quizOver();
@@ -137,8 +145,39 @@ function next() {
   }
 }
 
+const resetQuiz = () => {
+  questCount = 0;
+  corrAnsw = 0;
+  attempt = 0;
 
-window.onload = function() {
+};
+
+// eslint-disable-next-line no-unused-vars
+const tryAgain = () => {
+  resCont.classList.add('hide');
+  quizCont.classList.remove('hide');
+  resetQuiz();
+  start();
+};
+
+
+function quizResult() {
+  const percentage = (corrAnsw / quiz.length) * 100;
+  resCont.querySelector('.total-questions').innerHTML = quiz.length;
+  resCont.querySelector('.total-attempt').innerHTML = attempt;
+  resCont.querySelector('.total-correct').innerHTML = corrAnsw;
+  resCont.querySelector('.total-wrong').innerHTML = attempt - corrAnsw;
+  resCont.querySelector('.percentage').innerHTML = Math.ceil(percentage) + '%';
+  resCont.querySelector('.score').innerHTML = corrAnsw + '/' + quiz.length;
+}
+
+function start() {
+  homeCont.classList.add('hide');
+  quizCont.classList.remove('hide');
   setAvaliableQuestions();
   getNewQuestion();
+}
+
+window.onload = function() {
+  homeCont.querySelector('.total-question').innerHTML = quiz.length;
 };

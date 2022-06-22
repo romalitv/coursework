@@ -8,12 +8,12 @@
 	<link rel="stylesheet" href="../css/forquiz.css">
 </head>
 <body>
-	<div class="home custom-box hide">
+	<div class="home custom-box">
 		<h2>Тест з фізики</h2>
 		<p>Всього запитань : <span class="total-question"></span></p>
-		<button type="button" class="btn"> Почати</button>
+		<button type="button" class="btn" onclick="start()"> Почати</button>
 	</div>
-	<div class="quiz custom-box">
+	<div class="quiz custom-box hide">
 		<div class="question-number">
 
 		</div>
@@ -24,6 +24,9 @@
 		</div>
 		<div class="next-button">
 			<button type="button" class="btn" onclick="next()">Наступне</button>
+		</div>
+		<div class="timer">
+		
 		</div>
 	</div> 
 	<div class="result custom-box hide">
@@ -54,10 +57,10 @@
 			<td class="score"></td>
 		</tr>
 	</table>
-	<button type="button" class="btn">Спробувати знову</button>
+	<button type="button" class="btn" onclick="tryAgain()">Спробувати знову</button>
 	<button type="button" class="btn" ><a href="../html/main.html" >На головну</a></button>
 	</div>
 	</div>
-    <script src="../src/forquiz.js"></script>
+	<script src="../src/forquiz.js"></script>
 </body>
 </html>
