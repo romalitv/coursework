@@ -80,6 +80,17 @@ const getNewQuestion = () => {
   const optionLen = currQuest.options.length;
   for (let i = 0; i < optionLen; i++) {
     availOpts.push(i);
+
+
+    const optIndx = availOpts[Math.floor(Math.random() * availOpts.length)];
+    const numOfOptInd = availOpts.indexOf(optIndx);
+    availOpts.splice(numOfOptInd, 1);
+
+    const option = document.createElement('div');
+    option.innerHTML = currQuest.options[optIndx];
+    option.id = optIndx;
+    option.className = 'option';
+    optionData.appendChild(option);
   }
   questCount++;
 };
