@@ -49,6 +49,9 @@ const quiz = [
 const questNum = document.querySelector('.question-number');
 const questText = document.querySelector('.question-text');
 const optionData = document.querySelector('.option-container');
+const homeCont = document.querySelector('.home');
+const quizCont = document.querySelector('.quiz');
+const resCont = document.querySelector('.result');
 
 const availQuests = [];
 const availOpts = [];
@@ -121,9 +124,14 @@ function unclickableOption() {
   }
 }
 
+const quizOver = () => {
+  quizCont.classList.add('hide');
+  resCont.classList.remove('hide');
+};
+
 function next() {
   if (questCount === quiz.length) {
-    console.log("end");
+    quizOver();
   } else {
     getNewQuestion();
   }
