@@ -52,6 +52,7 @@ const optionData = document.querySelector('.option-container');
 const homeCont = document.querySelector('.home');
 const quizCont = document.querySelector('.quiz');
 const resCont = document.querySelector('.result');
+const displayTime = document.getElementById('times');
 
 const availQuests = [];
 const availOpts = [];
@@ -175,11 +176,34 @@ function quizResult() {
   resCont.querySelector('.score').innerHTML = corrAnsw + '/' + quiz.length;
 }
 
+function startTimer(duration, display) {
+  const timer = duration;
+  let minutes = timer[0];
+  let seconds = timer[1];
+  const times = setInterval(() => {
+    display.innerHTML = minutes + ':' + seconds;
+    if (minutes >= 0 && seconds >= 0) {
+      seconds--;
+    }
+    if (minutes > 0 && seconds < 0) {
+      minutes--;
+      seconds = 59;
+    }
+    if (minutes <= 0 && seconds < 0) {
+      clearInterval(times);
+      alert('Час вийшов');
+      quizOver();
+    }
+  }, 1000);
+}
+
 function start() {
   homeCont.classList.add('hide');
   quizCont.classList.remove('hide');
   setAvaliableQuestions();
   getNewQuestion();
+  const time = [1, 0];
+  startTimer(time, displayTime);
 }
 
 window.onload = function() {
