@@ -108,7 +108,6 @@ const getNewQuestion = () => {
   questCount++;
 };
 
-// eslint-disable-next-line no-unused-vars
 function getResult(element) {
   const id = parseInt(element.id);
   if (id === currQuest.answer) {
@@ -141,7 +140,6 @@ const quizOver = () => {
   quizResult();
 };
 
-// eslint-disable-next-line no-unused-vars
 function next() {
   if (questCount === quiz.length) {
     quizOver();
@@ -157,7 +155,6 @@ const resetQuiz = () => {
 
 };
 
-// eslint-disable-next-line no-unused-vars
 const tryAgain = () => {
   resCont.classList.add('hide');
   quizCont.classList.remove('hide');
