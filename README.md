@@ -4,4 +4,4 @@ This site shows you quiz with random question (in further plans I will do abilit
 
 ## See how it looks
 
-You can see how site functioning at life by clicking at [this text]((https://romalitv.github.io/quiz/html/main.html))
+You can see how site functioning at life by clicking at [this text](https://romalitv.github.io/quiz/html/main.html)
